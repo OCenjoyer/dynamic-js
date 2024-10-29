@@ -229,6 +229,9 @@ header nav ul li a {
     color: inherit;
 }
 
+/* Login */
+
+
 .login-text {
     width: 100px;
     height: 36px;
@@ -349,3 +352,28 @@ header nav ul li a {
     text-decoration: underline;
 }
 
+/* Login + JS */
+
+
+.notification {
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.notification img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
