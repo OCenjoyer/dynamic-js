@@ -187,6 +187,7 @@ footer nav ul {
 }
 
 /* MON CODE */
+/* Section des filtres */
 .filters {
     display: flex;
     justify-content: center;
@@ -194,6 +195,7 @@ footer nav ul {
     margin-bottom: 50px;
 }
 
+/* Style de base des boutons de filtre */
 .filter-btn {
     width: 100px;
     height: 37px;
@@ -204,41 +206,42 @@ footer nav ul {
     font-size: 16px;
     color: #1D6154;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Animation douce au hover */
 }
 
-/* Pour le bouton "Appartements" */
+/* Ajustement spécifique pour le bouton "Appartements" */
 .filter-btn:nth-child(3) {
     width: 150px; /* Largeur augmentée pour "Appartements" */
 }
 
-/* Pour le dernier bouton (Hôtels & restaurants) */
+/* Ajustement pour le bouton "Hôtels & restaurants" */
 .filter-btn:last-child {
     width: auto;
     padding: 0 20px;
 }
 
-/* Effet hover */
+/* Animation au survol des boutons de filtre */
 .filter-btn:hover {
     background-color: #1D6154;
     color: white;
 }
 
+/* Style des liens dans la navigation */
 header nav ul li a {
     text-decoration: none;
     color: inherit;
 }
 
-/* Login */
+/* SECTION LOGIN */
 
-
+/* Titre "Login" */
 .login-text {
     width: 100px;
     height: 36px;
     position: absolute;
     top: 242px;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%); /* Centrage horizontal */
     font-family: 'Syne', sans-serif;
     font-size: 30px;
     font-weight: 700;
@@ -247,6 +250,7 @@ header nav ul li a {
     color: #1D6154;
 }
 
+/* Label "E-mail" */
 .email-txt {
     width: 46px;
     height: 16px;
@@ -261,6 +265,7 @@ header nav ul li a {
     color: #3D3D3D;
 }
 
+/* Champ de saisie email */
 .email-input-box {
     width: 379px;
     height: 51px;
@@ -273,15 +278,16 @@ header nav ul li a {
     border: none;
     outline: none;
     padding: 0 10px;
-	border-radius: 5px;
-
+    border-radius: 5px;
 }
 
+/* Style du focus pour le champ email */
 .email-input-box:focus {
     border: 2px solid #1D6154;
-	border-radius: 5px;
+    border-radius: 5px;
 }
 
+/* Label "Mot de passe" */
 .password-txt {
     width: 92px;
     height: 16px;
@@ -296,6 +302,7 @@ header nav ul li a {
     color: #3D3D3D;
 }
 
+/* Champ de saisie mot de passe */
 .pw-input-box {
     width: 379px;
     height: 51px;
@@ -311,11 +318,13 @@ header nav ul li a {
     border-radius: 5px;
 }
 
+/* Style du focus pour le champ mot de passe */
 .pw-input-box:focus {
     border: 2px solid #1D6154;
     border-radius: 5px;
 }
 
+/* Bouton de connexion */
 .login-button {
     width: 179px;
     height: 36px;
@@ -323,12 +332,11 @@ header nav ul li a {
     left: 50%;
     transform: translateX(-50%);
     top: 529px;
-    border-radius: 60px 60px 60px 60px;
+    border-radius: 60px;
     background-color: #1D6154;
     color: white;
     border: none;
     cursor: pointer;
-    
     font-family: 'Syne', sans-serif;
     font-size: 14px;
     font-weight: 700;
@@ -336,25 +344,28 @@ header nav ul li a {
     text-align: center;
 }
 
+/* Animation au survol du bouton de connexion */
 .login-button:hover {
     background-color: #0E2F28;
 }
 
+/* Lien "Mot de passe oublié" */
 .forgot {
     display: flex;
     justify-content: center;
-    margin-top: 513px; 
+    margin-top: 513px;
     color: #3D3D3D;
     text-decoration: none;
 }
 
+/* Animation au survol du lien "Mot de passe oublié" */
 .forgot:hover {
     text-decoration: underline;
 }
 
-/* Login + JS */
+/* STYLES DES NOTIFICATIONS */
 
-
+/* Style de base des notifications */
 .notification {
     padding: 15px;
     border-radius: 5px;
@@ -364,16 +375,19 @@ header nav ul li a {
     font-weight: bold;
 }
 
+/* Style des icônes dans les notifications */
 .notification img {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
 
+/* Style des notifications de succès */
 .notification.success {
     background-color: #4CAF50;
 }
 
+/* Style des notifications d'erreur */
 .notification.error {
     background-color: #f44336;
 }
