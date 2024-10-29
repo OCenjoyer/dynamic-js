@@ -51,3 +51,19 @@ fetch(API_URL)
     .catch(error => {
         console.error("Erreur lors de la récupération des travaux:", error);
     });
+
+// Récupération des catégories depuis l'API
+fetch("http://localhost:5678/api/categories")
+    .then(function(response) {
+        if(response.ok) {
+            return response.json();
+        }
+        throw new Error('Erreur lors de la récupération des catégories');
+    })
+    .then(function(categories) {
+        console.log(categories);
+    })
+
+    .catch(function(err) {
+        console.error("Erreur:", err);
+    });
