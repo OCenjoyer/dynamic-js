@@ -223,3 +223,129 @@ footer nav ul {
     background-color: #1D6154;
     color: white;
 }
+
+header nav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.login-text {
+    width: 100px;
+    height: 36px;
+    position: absolute;
+    top: 242px;
+    left: 50%;
+    transform: translateX(-50%); 
+    font-family: 'Syne', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+    color: #1D6154;
+}
+
+.email-txt {
+    width: 46px;
+    height: 16px;
+    position: absolute;
+    top: 315px;
+    left: 39.5%;
+    font-family: 'Work Sans';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.42px;
+    text-align: left;
+    color: #3D3D3D;
+}
+
+.email-input-box {
+    width: 379px;
+    height: 51px;
+    position: absolute;
+    top: 338px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFFFFF;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    border: none;
+    outline: none;
+    padding: 0 10px;
+	border-radius: 5px;
+
+}
+
+.email-input-box:focus {
+    border: 2px solid #1D6154;
+	border-radius: 5px;
+}
+
+.password-txt {
+    width: 92px;
+    height: 16px;
+    position: absolute;
+    top: 419px;
+    left: 39.5%;
+    font-family: 'Work Sans';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.42px;
+    text-align: left;
+    color: #3D3D3D;
+}
+
+.pw-input-box {
+    width: 379px;
+    height: 51px;
+    position: absolute;
+    top: 441px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFFFFF;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.pw-input-box:focus {
+    border: 2px solid #1D6154;
+    border-radius: 5px;
+}
+
+.login-button {
+    width: 179px;
+    height: 36px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 529px;
+    border-radius: 60px 60px 60px 60px;
+    background-color: #1D6154;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.8px;
+    text-align: center;
+}
+
+.login-button:hover {
+    background-color: #0E2F28;
+}
+
+.forgot {
+    display: flex;
+    justify-content: center;
+    margin-top: 513px; 
+    color: #3D3D3D;
+    text-decoration: none;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
