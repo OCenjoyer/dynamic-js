@@ -188,7 +188,7 @@ footer nav ul {
 
 /* MON CODE */
 /* Section des filtres */
-.filters {
+.filter-container {
     display: flex;
     justify-content: center;
     gap: 10px;
