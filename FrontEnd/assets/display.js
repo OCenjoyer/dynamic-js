@@ -140,24 +140,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', function() {
   const loginButton = document.querySelector('nav ul li a[href="login.html"]');
-  
   const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const editButton = document.querySelector('.edit-button');
 
   if (isLoggedIn) {
       loginButton.textContent = 'Logout';
       loginButton.href = '#'; 
 
       const adminBanner = document.getElementById('admin-banner');
-        adminBanner.style.display = 'flex'; 
-        setTimeout(() => {
-            adminBanner.style.opacity = '1'; 
-            adminBanner.querySelector('i').style.opacity = '1'; 
-        }, 10);
+      adminBanner.style.display = 'flex'; 
+      setTimeout(() => {
+          adminBanner.style.opacity = '1'; 
+          adminBanner.querySelector('i').style.opacity = '1'; 
+      }, 10);
+
+      editButton.style.display = 'block'; 
 
       loginButton.addEventListener('click', function() {
           localStorage.removeItem('isLoggedIn');
           window.location.href = 'index.html';
       });
+  } else {
+      editButton.style.display = 'none'; 
   }
 });
 

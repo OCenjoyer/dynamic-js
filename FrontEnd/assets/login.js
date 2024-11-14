@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Rediriger vers la page d'accueil après 3 secondes
             setTimeout(() => {
                 window.location.href = 'index.html';
-            }, 3000);
+            }, 1500);
         } else {
             // Si les identifiants sont incorrects, afficher une notification d'erreur
             showNotification('Identifiants invalides', './assets/icons/error.png', 'error');

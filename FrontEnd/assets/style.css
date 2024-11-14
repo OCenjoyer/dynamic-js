@@ -126,7 +126,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -410,13 +409,36 @@ header nav ul li a {
     left: 0; 
     z-index: 1000; 
     margin-bottom: 20px;
+    margin-right: 10px; 
+
 
 }
 
 #admin-banner i {
     width: 15.58px;
     height: 15.58px;
-    margin-right: 10px; 
-    opacity: 0; 
-    transition: opacity 0.5s ease; 
+}
+
+#admin-banner:hover {
+    text-decoration: underline;
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.edit-button {
+    color: black;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    margin-left: 30px;
+}
+
+.edit-button:hover {
+    text-decoration: underline;
 }
