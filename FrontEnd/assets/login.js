@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Vérifier si les identifiants correspondent à ceux de l'admin
         if (email === 'sophie.bluel@test.tld' && password === 's0phie') {
+            localStorage.setItem('isLoggedIn', 'true');
             // Si les identifiants sont corrects, afficher une notification de succès
             showNotification('Connecté en tant qu\'admin', './assets/icons/admin.png', 'success');
             
