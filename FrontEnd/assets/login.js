@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Si les identifiants sont corrects, afficher une notification de succès
             showNotification('Connecté en tant qu\'admin', './assets/icons/admin.png', 'success');
             
-            // Rediriger vers la page d'accueil après 3 secondes
+            // Rediriger vers la page d'accueil après 1.5 secondes
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 1500);
