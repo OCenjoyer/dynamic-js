@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.querySelector('form');
     
     // Ajouter un écouteur d'événement sur la soumission du formulaire
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', async function(e) {
         // Empêcher le comportement par défaut du formulaire (rechargement de la page)
         e.preventDefault();
         
@@ -12,19 +12,38 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         
-        // Vérifier si les identifiants correspondent à ceux de l'admin
-        if (email === 'sophie.bluel@test.tld' && password === 's0phie') {
-            localStorage.setItem('isLoggedIn', 'true');
-            // Si les identifiants sont corrects, afficher une notification de succès
+        try {
+            // Appeler l'API pour la connexion
+            const response = await fetch('http://localhost:5678/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }), // Envoyer les identifiants en JSON
+            });
+
+            // Vérifier si la réponse de l'API est OK (statut 200)
+            if (!response.ok) {
+                throw new Error('Identifiants invalides'); // Lancer une erreur si la connexion échoue
+            }
+
+            const data = await response.json(); // Récupérer les données de la réponse
+
+            // Si la connexion est réussie, stocker le token et l'état de connexion
+            localStorage.setItem('isLoggedIn', 'true'); // Indiquer que l'utilisateur est connecté
+            localStorage.setItem('token', data.token); // Stocker le token reçu
+            console.log('Token stocké:', data.token); // Afficher le token dans la console pour vérification
+
+            // Afficher une notification de succès
             showNotification('Connecté en tant qu\'admin', './assets/icons/admin.png', 'success');
             
             // Rediriger vers la page d'accueil après 1.5 secondes
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 1500);
-        } else {
-            // Si les identifiants sont incorrects, afficher une notification d'erreur
-            showNotification('Identifiants invalides', './assets/icons/error.png', 'error');
+        } catch (error) {
+            // Si une erreur se produit, afficher une notification d'erreur
+            showNotification(error.message, './assets/icons/error.png', 'error');
         }
     });
     
