@@ -182,21 +182,49 @@ inputTitre.type = 'text';
 inputTitre.required = true;
 formAjout.appendChild(inputTitre);
 
-const inputImage = document.createElement('input');
-inputImage.type = 'url';
-inputImage.required = true;
-
 const labelImage = document.createElement('label');
 labelImage.innerText = 'Catégorie';
-labelImage.setAttribute('for', 'image');
+labelImage.setAttribute('for', 'category');
 formAjout.appendChild(labelImage);
-formAjout.appendChild(inputImage);
+
+const categorySelect = document.createElement('select');
+categorySelect.id = 'categoryInput';
+categorySelect.required = true;
+formAjout.appendChild(categorySelect);
+
+const emptyOption = document.createElement('option');
+emptyOption.value = '';
+emptyOption.textContent = 'Choisissez une option';
+emptyOption.disabled = true;
+emptyOption.selected = true;
+emptyOption.hidden = true;
+
+categorySelect.appendChild(emptyOption);
 
 const boutonValider = document.createElement('button');
 boutonValider.type = 'submit';
 boutonValider.innerText = 'Valider';
 boutonValider.classList.add("modal-button", "clickable");
+boutonValider.style.backgroundColor = '#A7A7A7'; 
+boutonValider.disabled = true;
+
 formAjout.appendChild(boutonValider);
+
+function checkInputs() {
+    const titleFilled = inputTitre.value.trim() !== '';
+    const categoryFilled = categorySelect.value !== '';
+
+    if (titleFilled && categoryFilled) {
+        boutonValider.style.backgroundColor = '#1D6154';
+        boutonValider.disabled = false;
+    } else {
+        boutonValider.style.backgroundColor = '#A7A7A7';
+        boutonValider.disabled = true;
+    }
+}
+
+inputTitre.addEventListener('input', checkInputs);
+categorySelect.addEventListener('change', checkInputs);
 
 formAjout.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -204,7 +232,8 @@ formAjout.addEventListener('submit', (event) => {
 
     const nouveauProjet = {
         title: inputTitre.value,
-        imageUrl: inputImage.value,
+        category: categorySelect.value ,
+        imageUrl: previewImage.src,
     };
 
     fetch('http://localhost:5678/api/works', {
@@ -242,3 +271,17 @@ boutonAjouter.addEventListener('click', () => {
     modal1.style.display = 'none';
     modal2.style.display = 'flex';
 });
+
+fetch('http://localhost:5678/api/categories')
+    .then(res => res.json())
+    .then(categories => {
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id; 
+            option.innerText = category.name; 
+            categorySelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement des catégories:', error);
+    });
