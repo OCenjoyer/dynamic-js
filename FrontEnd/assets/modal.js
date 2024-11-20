@@ -1,20 +1,20 @@
-const modal = document.createElement("div");
-modal.classList.add("modal");
-modal.style.display = "none";
+const modal1 = document.createElement("div");
+modal1.classList.add("modal");
+modal1.style.display = "none";
 
-const modalBox = document.createElement("div");
-modalBox.classList.add("modal-box");
+const modalBox1 = document.createElement("div");
+modalBox1.classList.add("modal-box");
 
-const modalHeader = document.createElement("div");
-modalHeader.classList.add("modal-header");
+const modalHeader1 = document.createElement("div");
+modalHeader1.classList.add("modal-header");
 
-const cross = document.createElement("i");
-cross.classList.add("fa-solid", "fa-xmark", "fa-xl", "clickable");
-modalHeader.appendChild(cross);
+const cross1 = document.createElement("i");
+cross1.classList.add("fa-solid", "fa-xmark", "fa-xl", "clickable");
+modalHeader1.appendChild(cross1);
 
-const modalTitre = document.createElement("h1");
-modalTitre.innerText = "Galerie photo";
-modalTitre.classList.add("modal-title");
+const modalTitre1 = document.createElement("h1");
+modalTitre1.innerText = "Galerie photo";
+modalTitre1.classList.add("modal-title");
 
 const divLine = document.createElement("div");
 divLine.classList.add("line");
@@ -26,7 +26,6 @@ const boutonAjouter = document.createElement("a");
 boutonAjouter.innerText = "Ajouter un projet";
 boutonAjouter.classList.add("modal-button", "clickable");
 
-// Fonction pour afficher la galerie de projets
 function afficherGallery(list) {
     divGalleryMod.innerHTML = '';
     for (let projet of list) {
@@ -47,7 +46,6 @@ function afficherGallery(list) {
     }
 }
 
-// Récupérer les projets depuis l'API
 fetch("http://localhost:5678/api/works")
     .then(res => res.json())
     .then(afficherGallery)
@@ -55,17 +53,10 @@ fetch("http://localhost:5678/api/works")
         console.error('Erreur lors de la récupération des travaux:', error);
     });
 
-// Écouter les clics sur les icônes de suppression
 divGalleryMod.addEventListener("click", (event) => {
     if (event.target.classList.contains("fa-trash-can")) {
         const id = event.target.getAttribute("data-id");
         const token = localStorage.getItem("token");
-
-        console.log('Token récupéré pour suppression:', token); // Vérifiez le token
-        if (!token) {
-            console.error('Token is missing. Please log in again.');
-            return;
-        }
 
         fetch(`http://localhost:5678/api/works/${id}`, {
             method: "DELETE",
@@ -85,29 +76,169 @@ divGalleryMod.addEventListener("click", (event) => {
     }
 });
 
-// Afficher le modal lorsque le bouton "Modifier" est cliqué
 const boutonModifier = document.querySelector(".edit-button");
 boutonModifier.addEventListener("click", () => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
-        modal.style.display = "block";
+    modal1.style.display = "flex";
+});
+
+modal1.addEventListener("click", (event) => {
+    if (event.target === modal1 || event.target === cross1) {
+        modal1.style.display = "none";
     }
 });
 
-// Fermer le modal lorsque l'utilisateur clique sur le fond ou sur la croix
-modal.addEventListener("click", (event) => {
-    if (event.target === modal || event.target === cross) {
-        modal.style.display = "none";
-    }
+modalHeader1.appendChild(cross1);
+modalBox1.appendChild(modalHeader1);
+modalBox1.appendChild(modalTitre1);
+modalBox1.appendChild(divGalleryMod);
+modalBox1.appendChild(divLine);
+modalBox1.appendChild(boutonAjouter);
+modal1.appendChild(modalBox1);
+
+document.body.appendChild(modal1);
+
+// ------------------- SECONDE MODALE POUR AJOUTER UN PROJET -------------------
+
+const modal2 = document.createElement('div');
+modal2.className = 'modal2';
+modal2.style.display = 'none';
+
+const modalBox2 = document.createElement('div');
+modalBox2.classList.add("modal-box2");
+
+const modalHeader2 = document.createElement("div");
+modalHeader2.classList.add("modal-header2");
+
+const cross2 = document.createElement("i");
+cross2.classList.add("fa-solid", "fa-xmark", "fa-xl", "clickable", "icon-black"); 
+
+const backArrow = document.createElement("i");
+backArrow.classList.add("fa-solid", "fa-arrow-left", "back-arrow", "clickable", "icon-black"); 
+modalHeader2.appendChild(backArrow);
+
+modalHeader2.appendChild(cross2);
+
+const modalTitre2 = document.createElement("h1");
+modalTitre2.innerText = "Ajout Photo";
+modalTitre2.classList.add("modal-title2");
+
+const rectangle = document.createElement('div');
+rectangle.classList.add('rectangle');
+
+const iconImage = document.createElement('i');
+iconImage.className = 'fa-regular fa-image rectangle-icon';
+rectangle.appendChild(iconImage);
+
+const previewImage = document.createElement('img');
+previewImage.classList.add('preview-image');
+previewImage.style.display = 'none';
+rectangle.appendChild(previewImage);
+
+modalHeader2.appendChild(cross2);
+modalHeader2.appendChild(modalTitre2);
+modalBox2.appendChild(modalHeader2);
+modalBox2.appendChild(rectangle);
+
+const button = document.createElement('button');
+button.classList.add('button-ajouter-photo');
+const buttonText = document.createElement('span');
+buttonText.innerText = '+ Ajouter photo';
+buttonText.classList.add('button-ajouter-photo-text');
+button.appendChild(buttonText);
+
+button.addEventListener('click', () => {
+    const inputFile = document.createElement('input');
+    inputFile.type = 'file';
+    inputFile.accept = 'image/*';
+
+    inputFile.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                iconImage.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    inputFile.click();
 });
 
-// Construire la structure du modal
-modalBox.appendChild(modalHeader);
-modalBox.appendChild(modalTitre);
-modalBox.appendChild(divGalleryMod);
-modalBox.appendChild(divLine);
-modalBox.appendChild(boutonAjouter);
-modal.appendChild(modalBox);
+rectangle.appendChild(button);
 
-// Ajouter le modal au body
-document.body.appendChild(modal);
+const formAjout = document.createElement('form');
+formAjout.classList.add("form-ajout");
+
+const labelTitre = document.createElement('label');
+labelTitre.innerText = 'Titre';
+labelTitre.setAttribute('for', 'titre');
+formAjout.appendChild(labelTitre);
+
+const inputTitre = document.createElement('input');
+inputTitre.type = 'text';
+inputTitre.required = true;
+formAjout.appendChild(inputTitre);
+
+const inputImage = document.createElement('input');
+inputImage.type = 'url';
+inputImage.required = true;
+
+const labelImage = document.createElement('label');
+labelImage.innerText = 'Catégorie';
+labelImage.setAttribute('for', 'image');
+formAjout.appendChild(labelImage);
+formAjout.appendChild(inputImage);
+
+const boutonValider = document.createElement('button');
+boutonValider.type = 'submit';
+boutonValider.innerText = 'Valider';
+boutonValider.classList.add("modal-button", "clickable");
+formAjout.appendChild(boutonValider);
+
+formAjout.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem('token');
+
+    const nouveauProjet = {
+        title: inputTitre.value,
+        imageUrl: inputImage.value,
+    };
+
+    fetch('http://localhost:5678/api/works', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(nouveauProjet),
+    })
+    .then(res => res.json())
+    .then(projetAjoute => {
+        afficherGallery([...divGalleryMod.children, projetAjoute]);
+        modal2.style.display = 'none';
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'ajout du projet:', error);
+    });
+});
+
+cross2.addEventListener('click', () => {
+    modal2.style.display = 'none';
+});
+
+backArrow.addEventListener('click', () => {
+    modal2.style.display = 'none';
+    modal1.style.display = 'flex';
+});
+
+modalBox2.appendChild(formAjout);
+modal2.appendChild(modalBox2);
+document.body.appendChild(modal2);
+
+boutonAjouter.addEventListener('click', () => {
+    modal1.style.display = 'none';
+    modal2.style.display = 'flex';
+});
