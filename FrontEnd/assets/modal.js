@@ -68,6 +68,12 @@ divGalleryMod.addEventListener("click", (event) => {
                 if (imgSupprime) {
                     imgSupprime.remove();
                 }
+
+                const mainGallery = document.querySelector('.gallery');
+                const mainImgToRemove = mainGallery.querySelector(`img[src="${imgSupprime.querySelector('img').src}"]`);
+                if (mainImgToRemove) {
+                    mainImgToRemove.closest('figure').remove();
+                }
             }
         })
         .catch(error => {
@@ -98,6 +104,7 @@ modal1.appendChild(modalBox1);
 document.body.appendChild(modal1);
 
 // ------------------- SECONDE MODALE POUR AJOUTER UN PROJET -------------------
+
 
 const modal2 = document.createElement('div');
 modal2.className = 'modal2';
@@ -134,6 +141,12 @@ previewImage.classList.add('preview-image');
 previewImage.style.display = 'none';
 rectangle.appendChild(previewImage);
 
+const inputFile = document.createElement('input');
+inputFile.type = 'file';
+inputFile.accept = 'image/*';
+inputFile.style.display = 'none';
+rectangle.appendChild(inputFile);
+
 modalHeader2.appendChild(cross2);
 modalHeader2.appendChild(modalTitre2);
 modalBox2.appendChild(modalHeader2);
@@ -147,24 +160,20 @@ buttonText.classList.add('button-ajouter-photo-text');
 button.appendChild(buttonText);
 
 button.addEventListener('click', () => {
-    const inputFile = document.createElement('input');
-    inputFile.type = 'file';
-    inputFile.accept = 'image/*';
-
-    inputFile.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                previewImage.style.display = 'block';
-                iconImage.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
     inputFile.click();
+});
+
+inputFile.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
+            iconImage.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
 });
 
 rectangle.appendChild(button);
@@ -213,8 +222,9 @@ formAjout.appendChild(boutonValider);
 function checkInputs() {
     const titleFilled = inputTitre.value.trim() !== '';
     const categoryFilled = categorySelect.value !== '';
+    const imageSelected = inputFile.files.length > 0;
 
-    if (titleFilled && categoryFilled) {
+    if (titleFilled && categoryFilled && imageSelected) {
         boutonValider.style.backgroundColor = '#1D6154';
         boutonValider.disabled = false;
     } else {
@@ -225,33 +235,80 @@ function checkInputs() {
 
 inputTitre.addEventListener('input', checkInputs);
 categorySelect.addEventListener('change', checkInputs);
+inputFile.addEventListener('change', checkInputs);
+
+let updatedWorks = [];
 
 formAjout.addEventListener('submit', (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token');
-
-    const nouveauProjet = {
-        title: inputTitre.value,
-        category: categorySelect.value ,
-        imageUrl: previewImage.src,
-    };
+    
+    const title = inputTitre.value.trim();
+    const categoryId = categorySelect.value;
+    const imageFile = inputFile.files[0];
+    
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('category', categoryId);
+    formData.append('image', imageFile);
+    
+    const token = localStorage.getItem("token");
 
     fetch('http://localhost:5678/api/works', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(nouveauProjet),
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(errorText => {
+                throw new Error(`Erreur HTTP: ${response.status} - ${errorText}`);
+            });
+        }
+        return response.json();
+    })
+    .then(newProject => {
+        return fetch("http://localhost:5678/api/works");
     })
     .then(res => res.json())
-    .then(projetAjoute => {
-        afficherGallery([...divGalleryMod.children, projetAjoute]);
+    .then(fetchedWorks => {
+        updatedWorks = fetchedWorks;
+        afficherGallery(updatedWorks, categorySelect.value);
+
+        const mainGallery = document.querySelector('.gallery');
+        if (mainGallery) {
+            mainGallery.innerHTML = '';
+            updatedWorks.forEach(work => {
+                const figureEl = document.createElement('figure');
+                const imgEl = document.createElement('img');
+                imgEl.src = work.imageUrl;
+                imgEl.alt = work.title;
+                
+                const captionEl = document.createElement('figcaption');
+                captionEl.textContent = work.title;
+                
+                figureEl.appendChild(imgEl);
+                figureEl.appendChild(captionEl);
+                mainGallery.appendChild(figureEl);
+            });
+        }
+
+        formAjout.reset();
+        previewImage.style.display = 'none';
+        previewImage.src = '';
+        inputFile.value = '';
+        iconImage.style.display = 'block';
         modal2.style.display = 'none';
     })
     .catch(error => {
-        console.error('Erreur lors de l\'ajout du projet:', error);
+        console.error('Détails complets de l\'erreur:', error);
+        alert('Impossible d\'ajouter la photo. Erreur: ' + error.message);
     });
+});
+
+categorySelect.addEventListener('change', () => {
+    afficherGallery(updatedWorks, categorySelect.value);
 });
 
 cross2.addEventListener('click', () => {
