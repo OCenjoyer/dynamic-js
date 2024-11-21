@@ -103,6 +103,13 @@ modal1.appendChild(modalBox1);
 
 document.body.appendChild(modal1);
 
+const modeEditionSpan = document.getElementById("mode-edition");
+
+modeEditionSpan.addEventListener("click", () => {
+    modal1.style.display = "flex";
+});
+
+
 // ------------------- SECONDE MODALE POUR AJOUTER UN PROJET -------------------
 
 
