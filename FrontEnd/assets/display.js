@@ -138,30 +138,44 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Initialisation de l\'application terminée');
 });
 
+// Attend que le DOM soit entièrement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', function() {
-  const loginButton = document.querySelector('nav ul li a[href="login.html"]');
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  const editButton = document.querySelector('.edit-button');
-
-  if (isLoggedIn) {
-      loginButton.textContent = 'Logout';
-      loginButton.href = '#'; 
-
-      const adminBanner = document.getElementById('admin-banner');
-      adminBanner.style.display = 'flex'; 
-      setTimeout(() => {
-          adminBanner.style.opacity = '1'; 
-          adminBanner.querySelector('i').style.opacity = '1'; 
-      }, 10);
-
-      editButton.style.display = 'block'; 
-
-      loginButton.addEventListener('click', function() {
-          localStorage.removeItem('isLoggedIn');
-          window.location.href = 'index.html';
-      });
-  } else {
-      editButton.style.display = 'none'; 
-  }
-});
-
+    // Sélectionne le bouton de connexion (ou déconnexion) dans la barre de navigation
+    const loginButton = document.querySelector('nav ul li a[href="login.html"]');
+    // Récupère l'état de connexion de l'utilisateur à partir du localStorage
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // Sélectionne le bouton d'édition (visible uniquement si l'utilisateur est connecté)
+    const editButton = document.querySelector('.edit-button');
+  
+    // Vérifie si l'utilisateur est connecté
+    if (isLoggedIn) {
+        // Change le texte du bouton en "Logout" pour signifier une déconnexion
+        loginButton.textContent = 'Logout';
+        // Supprime la redirection vers la page de connexion pour éviter les conflits
+        loginButton.href = '#';
+  
+        // Affiche une bannière spécifique pour l'administrateur
+        const adminBanner = document.getElementById('admin-banner');
+        adminBanner.style.display = 'flex'; // Rends la bannière visible en tant que flexbox
+        setTimeout(() => {
+            // Ajoute une transition pour rendre la bannière visible progressivement
+            adminBanner.style.opacity = '1';
+            adminBanner.querySelector('i').style.opacity = '1'; // Montre l'icône de la bannière
+        }, 10);
+  
+        // Rends le bouton d'édition visible
+        editButton.style.display = 'block';
+  
+        // Ajoute un gestionnaire d'événements pour déconnecter l'utilisateur
+        loginButton.addEventListener('click', function() {
+            // Supprime l'état de connexion de localStorage
+            localStorage.removeItem('isLoggedIn');
+            // Redirige vers la page d'accueil après la déconnexion
+            window.location.href = 'index.html';
+        });
+    } else {
+        // Si l'utilisateur n'est pas connecté, le bouton d'édition reste caché
+        editButton.style.display = 'none';
+    }
+  });
+  
