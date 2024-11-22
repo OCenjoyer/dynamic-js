@@ -189,7 +189,7 @@ footer nav ul {
 }
 
 /* MON CODE */
-/* Section des filtres */
+/* Conteneur des boutons de filtre, gère l'organisation et l'espacement */
 .filter-container {
     display: flex;
     justify-content: center;
@@ -197,7 +197,7 @@ footer nav ul {
     margin-bottom: 50px;
 }
 
-/* Style de base des boutons de filtre */
+/* Bouton de filtre avec style de base arrondi et interactif */
 .filter-btn {
     width: 100px;
     height: 37px;
@@ -208,42 +208,40 @@ footer nav ul {
     font-size: 16px;
     color: #1D6154;
     cursor: pointer;
-    transition: all 0.3s ease; /* Animation douce au hover */
+    transition: all 0.3s ease;
 }
 
-/* Ajustement spécifique pour le bouton "Appartements" */
+/* Bouton spécifique pour "Appartements" avec une largeur étendue */
 .filter-btn:nth-child(3) {
-    width: 150px; /* Largeur augmentée pour "Appartements" */
+    width: 150px;
 }
 
-/* Ajustement pour le bouton "Hôtels & restaurants" */
+/* Dernier bouton ("Hôtels & restaurants") avec taille et padding ajustés */
 .filter-btn:last-child {
     width: auto;
     padding: 0 20px;
 }
 
-/* Animation au survol des boutons de filtre */
+/* Effet de survol sur les boutons, change la couleur de fond et du texte */
 .filter-btn:hover {
     background-color: #1D6154;
     color: white;
 }
 
-/* Style des liens dans la navigation */
+/* Liens de navigation sans soulignement et héritant de la couleur du texte */
 header nav ul li a {
     text-decoration: none;
     color: inherit;
 }
 
-/* SECTION LOGIN */
-
-/* Titre "Login" */
+/* Texte principal "Login", centré et stylisé */
 .login-text {
     width: 100px;
     height: 36px;
     position: absolute;
     top: 242px;
     left: 50%;
-    transform: translateX(-50%); /* Centrage horizontal */
+    transform: translateX(-50%);
     font-family: 'Syne', sans-serif;
     font-size: 30px;
     font-weight: 700;
@@ -252,7 +250,7 @@ header nav ul li a {
     color: #1D6154;
 }
 
-/* Label "E-mail" */
+/* Label pour le champ "E-mail", positionné et aligné à gauche */
 .email-txt {
     width: 46px;
     height: 16px;
@@ -267,7 +265,7 @@ header nav ul li a {
     color: #3D3D3D;
 }
 
-/* Champ de saisie email */
+/* Champ de saisie pour l'email, centré avec une ombre légère */
 .email-input-box {
     width: 379px;
     height: 51px;
@@ -283,13 +281,13 @@ header nav ul li a {
     border-radius: 5px;
 }
 
-/* Style du focus pour le champ email */
+/* Effet au focus sur le champ email, ajout d'une bordure verte */
 .email-input-box:focus {
     border: 2px solid #1D6154;
     border-radius: 5px;
 }
 
-/* Label "Mot de passe" */
+/* Label pour le champ "Mot de passe", positionné et aligné à gauche */
 .password-txt {
     width: 92px;
     height: 16px;
@@ -304,7 +302,7 @@ header nav ul li a {
     color: #3D3D3D;
 }
 
-/* Champ de saisie mot de passe */
+/* Champ de saisie pour le mot de passe, même design que le champ email */
 .pw-input-box {
     width: 379px;
     height: 51px;
@@ -320,13 +318,13 @@ header nav ul li a {
     border-radius: 5px;
 }
 
-/* Style du focus pour le champ mot de passe */
+/* Effet au focus sur le champ mot de passe, ajout d'une bordure verte */
 .pw-input-box:focus {
     border: 2px solid #1D6154;
     border-radius: 5px;
 }
 
-/* Bouton de connexion */
+/* Bouton "Login", centré et arrondi avec une couleur de fond verte */
 .login-button {
     width: 179px;
     height: 36px;
@@ -346,12 +344,12 @@ header nav ul li a {
     text-align: center;
 }
 
-/* Animation au survol du bouton de connexion */
+/* Effet au survol sur le bouton login, change la couleur de fond en vert foncé */
 .login-button:hover {
     background-color: #0E2F28;
 }
 
-/* Lien "Mot de passe oublié" */
+/* Lien "Mot de passe oublié", centré avec une mise en page flexible */
 .forgot {
     display: flex;
     justify-content: center;
@@ -360,14 +358,12 @@ header nav ul li a {
     text-decoration: none;
 }
 
-/* Animation au survol du lien "Mot de passe oublié" */
+/* Effet au survol sur le lien "Mot de passe oublié", ajoute un soulignement */
 .forgot:hover {
     text-decoration: underline;
 }
 
-/* STYLES DES NOTIFICATIONS */
-
-/* Style de base des notifications */
+/* Conteneur de notification, définit l'apparence de base */
 .notification {
     padding: 15px;
     border-radius: 5px;
@@ -377,24 +373,25 @@ header nav ul li a {
     font-weight: bold;
 }
 
-/* Style des icônes dans les notifications */
+/* Icône des notifications avec espacement et taille fixe */
 .notification img {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
 
-/* Style des notifications de succès */
+/* Notification de succès, avec un fond vert */
 .notification.success {
     background-color: #4CAF50;
 }
 
-/* Style des notifications d'erreur */
+/* Notification d'erreur, avec un fond rouge */
 .notification.error {
     background-color: #f44336;
 }
 
-/* bandeau */
+
+/* Bandeau admin fixe en haut de la page, avec style noir et transition d'opacité */
 #admin-banner {
     width: 100%; 
     height: 59px;
@@ -411,25 +408,27 @@ header nav ul li a {
     z-index: 1000; 
     margin-bottom: 20px;
     margin-right: 10px; 
-
-
 }
 
+/* Icônes dans le bandeau admin avec des dimensions spécifiques */
 #admin-banner i {
     width: 15.58px;
     height: 15.58px;
 }
 
+/* Effet au survol du bandeau admin, ajout d'un soulignement au texte */
 #admin-banner:hover {
     text-decoration: underline;
 }
-/* boutton de modification */
+
+/* En-tête du portfolio avec alignement centré */
 .portfolio-header {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
 }
 
+/* Bouton d'édition dans le portfolio, avec style minimaliste */
 .edit-button {
     color: black;
     font-family: Work Sans;
@@ -438,14 +437,15 @@ header nav ul li a {
     cursor: pointer;
     border: none;
     margin-left: 30px;
+    background: none;
 }
 
+/* Effet au survol du bouton d'édition, ajout d'un soulignement */
 .edit-button:hover {
     text-decoration: underline;
 }
 
-/* début de la modale */
-
+/* Conteneur de la modale, occupe toute la fenêtre avec fond semi-transparent */
 .modal {
     position: fixed;
     top: 0;
@@ -459,6 +459,7 @@ header nav ul li a {
     z-index: 1000;
 }
 
+/* Contenu de la modale avec un style centré et arrondi */
 .modal-box {
     background-color: white;
     border-radius: 8px;
@@ -468,6 +469,7 @@ header nav ul li a {
     position: relative;
 }
 
+/* Titre de la modale, centré avec marges et soulignement */
 .modal-title {
     font-family: 'Work Sans';
     color: black;
@@ -481,6 +483,7 @@ header nav ul li a {
     margin-bottom: 30px;
 }
 
+/* En-tête de la modale avec alignement des éléments */
 .modal-header {
     position: relative;
     display: flex;
@@ -488,6 +491,7 @@ header nav ul li a {
     align-items: center;
 }
 
+/* Icône pour fermer la modale, placée en haut à droite */
 .fa-xmark {
     position: absolute;
     top: 10px;
@@ -496,6 +500,8 @@ header nav ul li a {
     color: #1D6154;
 }
 
+
+/* Titre dans l'en-tête de la modale avec style personnalisé */
 .modal-header h3 {
     margin: 0;
     font-family: 'Syne', sans-serif;
@@ -503,6 +509,7 @@ header nav ul li a {
     color: #1D6154;
 }
 
+/* Ligne horizontale pour séparer les sections dans la modale */
 .line {
     height: 2px;
     width: 400px;
@@ -511,6 +518,7 @@ header nav ul li a {
     margin-top: 60px;
 }
 
+/* Galerie modifiée avec disposition en grille à 5 colonnes */
 .gallery-mod {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -519,18 +527,21 @@ header nav ul li a {
     margin-right: 50px;
 }
 
+/* Conteneur pour chaque image dans la galerie */
 .div-image {
     position: relative;
     width: 100%;
     height: 100px;
 }
 
+/* Images dans la galerie, ajustées à leur conteneur et avec bords arrondis */
 .div-image img {
     width: 100%;
     height: 100%;
     border-radius: 4px;
 }
 
+/* Icône de suppression dans la galerie, positionnée en haut à droite de l'image */
 .fa-trash-can {
     position: absolute;
     top: 5px;
@@ -539,6 +550,7 @@ header nav ul li a {
     cursor: pointer;
 }
 
+/* Bouton principal dans la modale, centré avec style arrondi */
 .modal-button {
     display: block;
     margin: 20px auto;
@@ -551,15 +563,17 @@ header nav ul li a {
     text-align: center;
 }
 
+/* Effet au survol du bouton principal, fond devient vert foncé */
 .modal-button:hover {
     background-color: #0E2F28;
 }
 
+/* Icône de fermeture dans l'en-tête de la modale, avec style noir */
 .modal-header .fa-xmark {
     color: black;
 }
 
-/* modal2 */
+/* Deuxième modale, occupe toute la fenêtre avec fond semi-transparent */
 .modal2 {
     position: fixed;
     top: 0;
@@ -573,6 +587,7 @@ header nav ul li a {
     z-index: 1001;
 }
 
+/* Conteneur de la deuxième modale, centré avec dimensions fixes */
 .modal-box2 {
     background-color: white;
     border-radius: 8px;
@@ -584,17 +599,21 @@ header nav ul li a {
     padding: 20px;
 }
 
+/* En-tête de la deuxième modale avec disposition flexible */
 .modal2-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Icône de fermeture dans l'en-tête de la deuxième modale */
 .modal2-header .fa-xmark {
     cursor: pointer;
     color: black;
 }
 
+
+/* Titre de la deuxième modale, centré avec marges et soulignement */
 .modal-title2 {
     font-family: 'Work Sans';
     font-size: 26px;
@@ -606,11 +625,14 @@ header nav ul li a {
     color: black;
     margin-bottom: 30px;
 }
+
+/* Formulaire d'ajout structuré en colonne */
 .form-ajout {
     display: flex;
     flex-direction: column; 
 }
 
+/* Style des menus déroulants dans le formulaire d'ajout */
 .form-ajout select {
     border: none;
     outline: none;
@@ -621,6 +643,7 @@ header nav ul li a {
     appearance: none;
 }
 
+/* Style des champs de saisie dans le formulaire d'ajout */
 .form-ajout input {
     border: none;
     box-shadow: none;
@@ -629,11 +652,13 @@ header nav ul li a {
     border-radius: 4px;
 }
 
+/* Style des champs de saisie en focus */
 .form-ajout input:focus {
     border: none;
     outline: none;
 }
 
+/* Bouton principal dans la modale, arrondi avec couleur verte */
 .modal-button {
     padding: 10px;
     background-color: #1D6154;
@@ -644,10 +669,12 @@ header nav ul li a {
     text-align: center;
 }
 
+/* Effet au survol du bouton principal, fond devient vert foncé */
 .modal-button:hover {
     background-color: #0E2F28; 
 }
 
+/* Rectangle de prévisualisation avec fond bleu clair */
 .rectangle {
     width: 420px;
     height: 169px;
@@ -660,6 +687,7 @@ header nav ul li a {
     position: relative;
 }
 
+/* Icône dans le rectangle de prévisualisation, centrée avec taille augmentée */
 .rectangle-icon {
     font-size: 76px;
     color: #B9C5CC;
@@ -667,6 +695,7 @@ header nav ul li a {
     margin-bottom: 60px;
 }
 
+/* Image de prévisualisation dans le rectangle, masquée par défaut */
 .preview-image {
     max-width: 76px;
     max-height: 76px;
@@ -677,6 +706,7 @@ header nav ul li a {
     top: 10px;
 }
 
+/* Bouton pour ajouter une photo, avec style arrondi et fond bleu clair */
 .button-ajouter-photo {
     margin-top: 110px;
     background: #CBD6DC;
@@ -689,6 +719,7 @@ header nav ul li a {
     height: 36px;
 }
 
+/* Texte dans le bouton d'ajout de photo, centré et en bleu */
 .button-ajouter-photo-text {
     color: #306685;
     font-family: 'Work Sans';
@@ -696,6 +727,7 @@ header nav ul li a {
     text-align: center; 
 }
 
+/* Style pour les icônes noires */
 .icon-black {
     color: black; 
 }
